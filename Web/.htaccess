@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !=/index.php
+RewriteCond %{REQUEST_URI} !^/assets*
+
+RewriteRule ^(.*) index.php?req=$1 [QSA,L,PT]
