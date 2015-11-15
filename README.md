@@ -1,2 +1,2 @@
 # waddle-mvc
-Lightweigh PHP MVC Framework.
+Lightweight PHP MVC Framework. Develop with a waddle!
