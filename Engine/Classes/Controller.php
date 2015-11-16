@@ -12,7 +12,16 @@ abstract class Controller {
     }
 
     function render($view, $args) {
-        $content = __DIR__.\sl('/../../Src/Views/').$view.'.php';
+		$baseName = __DIR__.\sl('/../../Src/Views/').$view;
+		if (file_exists($baseName . '.php')) {
+			$content = $baseName . '.php';
+		} elseif (file_exists($baseName . '.html')) {
+			$content = $baseName . '.html';
+		} elseif (file_exists($baseName . '.htm')) {
+			$content = $baseName . '.htm';
+		} else {
+			throw new \Exception('View "' . $view . '" was not found!');
+		}
         $app = $this->app;
         foreach($args as $varName => $varValue) {
             $$varName = $varValue;
