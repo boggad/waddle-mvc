@@ -16,4 +16,5 @@ interface FieldInterface
 	public function getHtmlEscaped();
 	public function set(mixed $data);
 	public function validate();
+	public function getView(array $attributes);
 }
