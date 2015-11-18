@@ -3,19 +3,22 @@
 namespace Engine\Classes\Fields;
 
 /**
- * Class StringField
+ * Class DecimalField
  * @author Timofey
  */
 abstract class AbstractField implements FieldInterface {
 
     protected $validators;
     protected $data;
+    protected $label;
 
     /**
      * @param mixed array $validators
+     * @param bool $label
      */
-    public function __construct(array $validators) {
+    public function __construct(array $validators, $label = false) {
         $this->validators = is_null($validators) ? array() : $validators;
+        $this->label = $label;
     }
 
     public function get() {
@@ -44,6 +47,10 @@ abstract class AbstractField implements FieldInterface {
             }
         }
         return true;
+    }
+
+    protected function getLabelView($idAttr) {
+        return '<label for="' . $idAttr . '">' . $this->label . '</label>';
     }
 
     public abstract function getView(array $attributes);

@@ -3,13 +3,13 @@
 namespace Engine\Classes\Fields;
 
 /**
- * Class StringField
+ * Class DecimalField
  * @author Timofey
  */
-class StringField extends AbstractField {
+class DecimalField extends AbstractField {
 
     public function getView(array $attributes) {
-        $html = '<input type="text" ';
+        $html = '<input type="text" pattern="([0-9]+|[0-9]+[\.][0-9]+)" ';
         foreach ($attributes as $name => $value) {
             $html .= $name . '="' . htmlspecialchars($value) . '" ';
         }

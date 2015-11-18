@@ -10,7 +10,7 @@ interface FieldInterface {
     /**
      * @param mixed array $validators
      */
-    public function __construct(array $validators);
+    public function __construct(array $validators, $label = false);
 
     public function get();
 

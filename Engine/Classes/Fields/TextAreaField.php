@@ -1,20 +1,25 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: kgb
+ * Date: 19.11.15
+ * Time: 0:13
+ */
 
 namespace Engine\Classes\Fields;
 
 /**
- * Class StringField
- * @author Timofey
+ * Class TextAreaField
+ * @package Engine\Classes\Fields
  */
-class StringField extends AbstractField {
+class TextAreaField extends AbstractField {
 
     public function getView(array $attributes) {
-        $html = '<input type="text" ';
+        $html = '<textarea ';
         foreach ($attributes as $name => $value) {
             $html .= $name . '="' . htmlspecialchars($value) . '" ';
         }
-        $html .= '/>';
+        $html .= '></textarea>';
         return $this->getLabelView($attributes['id']) . $html;
     }
 }
-

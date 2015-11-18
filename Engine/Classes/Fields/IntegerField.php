@@ -1,15 +1,21 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: kgb
+ * Date: 19.11.15
+ * Time: 0:06
+ */
 
 namespace Engine\Classes\Fields;
 
 /**
- * Class StringField
- * @author Timofey
+ * Class IntegerField
+ * @package Engine\Classes\Fields
  */
-class StringField extends AbstractField {
+class IntegerField extends AbstractField {
 
     public function getView(array $attributes) {
-        $html = '<input type="text" ';
+        $html = '<input type="number" ';
         foreach ($attributes as $name => $value) {
             $html .= $name . '="' . htmlspecialchars($value) . '" ';
         }
@@ -17,4 +23,3 @@ class StringField extends AbstractField {
         return $this->getLabelView($attributes['id']) . $html;
     }
 }
-

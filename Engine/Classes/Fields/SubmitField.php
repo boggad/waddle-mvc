@@ -1,15 +1,21 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: kgb
+ * Date: 19.11.15
+ * Time: 0:16
+ */
 
 namespace Engine\Classes\Fields;
 
-/**
- * Class StringField
- * @author Timofey
- */
-class StringField extends AbstractField {
+
+class SubmitField extends AbstractField {
 
     public function getView(array $attributes) {
-        $html = '<input type="text" ';
+        if (isset($attributes['value'])) {
+            unset($attributes['value']);
+        }
+        $html = '<input type="submit" value="' . $this->label . '" ';
         foreach ($attributes as $name => $value) {
             $html .= $name . '="' . htmlspecialchars($value) . '" ';
         }
@@ -17,4 +23,3 @@ class StringField extends AbstractField {
         return $this->getLabelView($attributes['id']) . $html;
     }
 }
-
