@@ -7,6 +7,9 @@ namespace Engine\Classes\Validators;
  * @author Timofey
  */
 interface ValidatorInterface {
+
+    public function getError();
+
     /**
      * @return boolean
      */

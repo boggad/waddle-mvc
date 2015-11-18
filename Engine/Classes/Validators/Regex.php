@@ -12,13 +12,16 @@ namespace Engine\Classes\Validators;
 class Regex implements ValidatorInterface {
 
     private $regex;
+    private $message;
 
     /**
      * Regex constructor.
+     * @param $message
      * @param $regex
      */
-    public function __construct($regex) {
+    public function __construct(string $message, $regex) {
         $this->regex = $regex;
+        $this->message = $message;
     }
 
 
@@ -31,5 +34,9 @@ class Regex implements ValidatorInterface {
         }
 
         return preg_match($this->regex, $data) > 0;
+    }
+
+    public function getError() {
+        return $this->message;
     }
 }

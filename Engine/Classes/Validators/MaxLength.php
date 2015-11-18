@@ -3,32 +3,32 @@
  * Created by PhpStorm.
  * User: kgb
  * Date: 18.11.15
- * Time: 22:47
+ * Time: 23:45
  */
 
 namespace Engine\Classes\Validators;
 
 
-class GreaterThan implements ValidatorInterface {
+class MaxLength implements ValidatorInterface {
 
-    private $lowerBound;
+    private $length;
     private $message;
 
     /**
-     * GreaterThan constructor.
-     * @param $lowerBound
+     * MaxLength constructor.
+     * @param $message
+     * @param $length
      */
-    public function __construct(string $message, $lowerBound) {
-        $this->lowerBound = $lowerBound;
+    public function __construct(string $message, $length) {
+        $this->length = $length;
         $this->message = $message;
     }
-
 
     /**
      * @return boolean
      */
     public function validate($data) {
-        return is_numeric($data) && ($data >= $this->lowerBound);
+        return is_string($data) && mb_strlen($data, 'utf-8') <= $this->length;
     }
 
     public function getError() {

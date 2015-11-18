@@ -10,14 +10,17 @@ class NumberBetween implements ValidatorInterface {
 
     private $lowerBound;
     private $upperBound;
+    private $message;
 
     /**
+     * @param $message
      * @param int|float $lowerBound
      * @param int|float $upperBound
      */
-    public function __construct($lowerBound, $upperBound) {
+    public function __construct(string $message, $lowerBound, $upperBound) {
         $this->lowerBound = $lowerBound;
         $this->upperBound = $upperBound;
+        $this->message = $message;
     }
 
     /**
@@ -30,5 +33,9 @@ class NumberBetween implements ValidatorInterface {
             return false;
         }
         return ($data >= $this->lowerBound) && ($data <= $this->upperBound);
+    }
+
+    public function getError() {
+        return $this->message;
     }
 }
