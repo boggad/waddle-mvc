@@ -11,14 +11,17 @@ abstract class AbstractField implements FieldInterface {
     protected $validators;
     protected $data;
     protected $label;
+    protected $attributes;
 
     /**
      * @param mixed array $validators
+     * @param array $attributes
      * @param bool $label
      */
-    public function __construct(array $validators, $label = false) {
+    public function __construct(array $validators, array $attributes,  $label = false) {
         $this->validators = is_null($validators) ? array() : $validators;
         $this->label = $label;
+        $this->attributes = $attributes;
     }
 
     public function get() {
@@ -38,20 +41,21 @@ abstract class AbstractField implements FieldInterface {
     }
 
     public function validate() {
+        $errors = [];
         /**
          * @var \Engine\Classes\Validators\ValidatorInterface $val
          */
         foreach ($this->validators as $val) {
             if (!$val->validate($this->data)) {
-                return false;
+                $errors[] = $val->getError();
             }
         }
-        return true;
+        return (count($errors) > 0) ? $errors : false;
     }
 
     protected function getLabelView($idAttr) {
         return '<label for="' . $idAttr . '">' . $this->label . '</label>';
     }
 
-    public abstract function getView(array $attributes);
+    public abstract function getView();
 }

@@ -9,10 +9,9 @@ namespace Engine\Classes;
 interface FormInterface
 {
 	public function __construct(Model $model);
-	public function handleGetRequest();
-	public function handlePostRequest();
+	public function handleRequest($requestData);
 	public function validate();
-	public function getView();
+	public function getView($fieldName, array $attributes);
 	public function get($fieldName);
-	public function set($fieldName);
+	public function set($fieldName, $data);
 }

@@ -14,12 +14,12 @@ namespace Engine\Classes\Fields;
  */
 class TextAreaField extends AbstractField {
 
-    public function getView(array $attributes) {
+    public function getView() {
         $html = '<textarea ';
-        foreach ($attributes as $name => $value) {
+        foreach ($this->attributes as $name => $value) {
             $html .= $name . '="' . htmlspecialchars($value) . '" ';
         }
         $html .= '></textarea>';
-        return $this->getLabelView($attributes['id']) . $html;
+        return $this->getLabelView($this->attributes['id']) . $html;
     }
 }

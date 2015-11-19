@@ -11,15 +11,15 @@ namespace Engine\Classes\Fields;
 
 class SubmitField extends AbstractField {
 
-    public function getView(array $attributes) {
-        if (isset($attributes['value'])) {
-            unset($attributes['value']);
+    public function getView() {
+        if (isset($this->attributes['value'])) {
+            unset($this->attributes['value']);
         }
         $html = '<input type="submit" value="' . $this->label . '" ';
-        foreach ($attributes as $name => $value) {
+        foreach ($this->attributes as $name => $value) {
             $html .= $name . '="' . htmlspecialchars($value) . '" ';
         }
         $html .= '/>';
-        return $this->getLabelView($attributes['id']) . $html;
+        return $this->getLabelView($this->attributes['id']) . $html;
     }
 }

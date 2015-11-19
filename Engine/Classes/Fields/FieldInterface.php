@@ -9,8 +9,10 @@ namespace Engine\Classes\Fields;
 interface FieldInterface {
     /**
      * @param mixed array $validators
+     * @param array $attributes
+     * @param bool $label
      */
-    public function __construct(array $validators, $label = false);
+    public function __construct(array $validators, array $attributes, $label = false);
 
     public function get();
 
@@ -20,5 +22,5 @@ interface FieldInterface {
 
     public function validate();
 
-    public function getView(array $attributes);
+    public function getView();
 }

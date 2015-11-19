@@ -19,7 +19,7 @@ class MaxLength implements ValidatorInterface {
      * @param $message
      * @param $length
      */
-    public function __construct(string $message, $length) {
+    public function __construct($message, $length) {
         $this->length = $length;
         $this->message = $message;
     }
