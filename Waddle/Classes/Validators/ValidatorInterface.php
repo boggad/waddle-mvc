@@ -8,6 +8,9 @@ namespace Waddle\Classes\Validators;
  */
 interface ValidatorInterface {
 
+    /**
+     * @return string
+     */
     public function getError();
 
     /**

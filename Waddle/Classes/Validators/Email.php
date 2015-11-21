@@ -28,7 +28,7 @@ class Email implements ValidatorInterface {
             return false;
         }
 
-        return preg_match('/[\w]+[\+]?[\w\.-]*@[\w\.\-]+\.[\w]{2,}/i', $data) > 0;
+        return preg_match('/^[\w]+[\+]?[\w\.-]*@[\w\.\-]+\.[\w]{2,}$/i', $data) > 0;
     }
 
     /**

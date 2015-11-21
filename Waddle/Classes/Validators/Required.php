@@ -40,6 +40,6 @@ class Required implements ValidatorInterface {
     }
 
     public function getError() {
-        // TODO: Implement getError() method.
+        return $this->message;
     }
 }

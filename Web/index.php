@@ -2,25 +2,11 @@
 session_set_cookie_params(7200);
 session_start();
 
-if (strtolower(substr(PHP_OS, 0, 3)) == 'win') {
-    define('DS', '\\');
-} else {
-    define('DS', '/');
-}
+define('DS', DIRECTORY_SEPARATOR);
+
+require_once '../autoload.php';
 
 
-function sl($path) {
-    $p = str_replace('/', DS, $path);
-    $p = str_replace('\\', DS, $p);
-    return $p;
-}
-
-spl_autoload_register(function($class) {
-    $path = __DIR__.'/../'.$class.'.php';
-    $path = \sl($path);
-    if (file_exists($path))
-        require_once $path;
-});
 
 require __DIR__ . '/../Waddle/Classes/App.php';
 require __DIR__ . '/../Waddle/config.php';
