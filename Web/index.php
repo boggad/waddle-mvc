@@ -22,10 +22,10 @@ spl_autoload_register(function($class) {
         require_once $path;
 });
 
-require __DIR__ . '/../Engine/Classes/App.php';
-require __DIR__ . '/../Engine/config.php';
+require __DIR__ . '/../Waddle/Classes/App.php';
+require __DIR__ . '/../Waddle/config.php';
 
-use Engine\Classes\App;
+use Waddle\Classes\App;
 
 try {
     $app = new App($config);

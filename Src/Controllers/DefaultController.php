@@ -2,7 +2,7 @@
 
 namespace Src\Controllers;
 
-use Engine\Classes\Controller;
+use Waddle\Classes\Controller;
 
 class DefaultController extends Controller {
 

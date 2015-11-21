@@ -9,7 +9,7 @@
 namespace Src\Models;
 
 
-use Engine\Classes\Model;
+use Waddle\Classes\Model;
 
 /**
  * Class Page
