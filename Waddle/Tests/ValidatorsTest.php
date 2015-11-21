@@ -6,13 +6,13 @@
  * Time: 19:06
  */
 
-namespace Engine\Tests;
+namespace Waddle\Tests;
 
 use Waddle\Classes\Validators\Email;
 use Waddle\Classes\Validators\NumberBetween;
 use Waddle\Classes\Validators\Required;
 
-class TestValidators extends \PHPUnit_Framework_TestCase {
+class ValidatorsTest extends \PHPUnit_Framework_TestCase {
 
     public function testRequiredValidator() {
         $validator = new Required('The field is required!');
