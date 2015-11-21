@@ -58,4 +58,8 @@ abstract class AbstractField implements FieldInterface {
     }
 
     public abstract function getView();
+
+    public function setAttribute($attrName, $attrValue) {
+        $this->attributes[$attrName] = $attrValue;
+    }
 }

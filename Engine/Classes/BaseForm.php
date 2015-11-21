@@ -14,13 +14,16 @@ namespace Engine\Classes;
  * Class BaseForm
  * @package Engine\Classes
  */
-class BaseForm implements FormInterface{
+class BaseForm implements FormInterface {
     protected $_model;
     /** @var Fields\FieldInterface[] */
     protected $_fields;
 
     /** @var boolean $handled */
     private $handled;
+
+    /** @var array $_errors */
+    protected $_errors;
 
     public function __construct(Model $model) {
         $this->_model = $model;
@@ -31,38 +34,53 @@ class BaseForm implements FormInterface{
         foreach ($fs as $prop) {
             if ($prop->getValue($this) instanceof \Engine\Classes\Fields\FieldInterface) {
                 $this->_fields[$prop->getName()] = $prop->getValue($this);
+                $this->_fields[$prop->getName()]->setAttribute('name', $prop->getName());
             }
         }
         $this->handled = false;
+        $this->_errors = [];
     }
 
     /**
      * @param $requestData {@code $_GET} or {@code $_POST}
+     * @return bool
      */
     public function handleRequest($requestData) {
         // TODO: Implement handleGetRequest() method. Errors are saved as a field.
         // TODO: And then are being used in getView method
+        foreach($requestData as $name => $value) {
+            if (!isset($this->_fields[$name])) continue;
+            $this->_fields[$name]->set($value);
+        }
+
+        return $this->validate();
 
     }
 
+    /**
+     * @return boolean
+     */
     public function validate() {
-        // TODO: Implement validate() method.
+        $this->_errors = [];
+        foreach ($this->_fields as $name => $value) {
+            $e = $value->validate();
+            if ($e !== false) {
+                $this->_errors[$name] = $e;
+            }
+        }
+        return $this->_errors == [];
     }
 
     public function getView($fieldName, array $attributes) {
         $views = [];
-        $errors = [];
         /**
          * @var string $fName
          * @var Fields\FieldInterface $f
          */
         foreach($this->_fields as $fName => $f) {
             $views[$fName] = $f->getView();
-            if ($this->handled) {
-                $errors[$fName] = $f->validate();
-            }
         }
-        return new FormView($views, $errors);
+        return new FormView($views, $this->_errors);
     }
 
     public function get($fieldName) {

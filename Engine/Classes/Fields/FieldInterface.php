@@ -14,6 +14,8 @@ interface FieldInterface {
      */
     public function __construct(array $validators, array $attributes, $label = false);
 
+    public function setAttribute($attrName, $attrValue);
+
     public function get();
 
     public function getHtmlEscaped();
