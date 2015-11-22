@@ -1,11 +1,5 @@
 <?php
 
-function sl($path) {
-    $p = str_replace('/', DS, $path);
-    $p = str_replace('\\', DS, $p);
-    return $p;
-}
-
 spl_autoload_register(function ($class) {
 
     $prefix = 'Waddle';
@@ -26,7 +20,7 @@ spl_autoload_register(function ($class) {
 
 spl_autoload_register(function($class) {
     $path = __DIR__.DIRECTORY_SEPARATOR.$class.'.php';
-    $path = \sl($path);
+    $path = str_replace('\\', DIRECTORY_SEPARATOR, $path);
     if (file_exists($path))
         require_once $path;
 });

@@ -28,7 +28,7 @@ class MaxLength implements ValidatorInterface {
      * @return boolean
      */
     public function validate($data) {
-        return is_string($data) && mb_strlen($data, 'utf-8') <= $this->length;
+        return mb_strlen($data, 'utf-8') <= $this->length;
     }
 
     public function getError() {
