@@ -12,7 +12,7 @@ abstract class Controller {
     }
 
     function render($view, $args) {
-		$baseName = __DIR__.\sl('/../../Src/Views/').$view;
+		$baseName = __DIR__.'/../../Src/Views/'.$view;
 		if (file_exists($baseName . '.php')) {
 			$content = $baseName . '.php';
 		} elseif (file_exists($baseName . '.html')) {
@@ -29,7 +29,7 @@ abstract class Controller {
             $$varName = $varValue;
         }
         if ($this->layout != '')
-            require_once __DIR__.\sl('/../../Src/Layouts/').$this->layout.'.php';
+            require_once __DIR__.'/../../Src/Layouts/'.$this->layout.'.php';
         else
             require_once $content;
     }

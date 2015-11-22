@@ -119,7 +119,7 @@ class App {
     }
 
     private function css_rewrite($css_file) {
-        $file = __DIR__ . \sl('/../../Web/assets/') . $css_file;
+        $file = __DIR__ . '/../../Web/assets/' . $css_file;
         $file_basename = pathinfo($css_file)['basename'];
         $css = file_get_contents($file);
         $regexp = '/asset\(([a-zA-Z0-9\?\=\&\#\/\._ -]+)?,\s?([0-9]+)\)/';
@@ -133,11 +133,11 @@ class App {
                 return '\'' . $this->asset($matches[1]) . '\'';
             }, $css);
         $hash = hash('crc32',$css);
-        if (file_exists(__DIR__ . \sl('\..\..\Web\assets\css_rewrite\\') . $hash . '_' . $file_basename)) {
+        if (file_exists(__DIR__ . '/../../Web/assets/css_rewrite/' . $hash . '_' . $file_basename)) {
             return '/assets/css_rewrite/' . $hash . '_' . $file_basename;
         }
         $newPath = '/assets/css_rewrite/' . $hash . '_' . $file_basename;
-        $newFile = __DIR__ . \sl('\..\..\Web\assets\css_rewrite\\') . $hash . '_' . $file_basename;
+        $newFile = __DIR__ . '/../../Web/assets/css_rewrite/' . $hash . '_' . $file_basename;
         $f = fopen($newFile, 'w');
         fwrite($f, $css);
         fclose($f);
@@ -145,7 +145,7 @@ class App {
     }
 
     public function assetView($name) {
-        return __DIR__ . \sl('/../../Src/Views/') . $name . '.php';
+        return __DIR__ . '/../../Src/Views/' . $name . '.php';
     }
 
     public function getConfig() {
@@ -167,7 +167,7 @@ class App {
     function __construct($config) {
         $this->_config = $config;
         $this->_entitymanagers = array();
-        $files = scandir(__DIR__ . \sl('\..\..\Src\Models'));
+        $files = scandir(__DIR__ . '/../../Src/Models');
         foreach ($files as $file) {
             $pi = pathinfo($file);
             if ($pi['extension'] != 'php') continue;
@@ -178,7 +178,7 @@ class App {
 
         $this->routingMap = array();
 
-        $files = scandir(__DIR__ . \sl('\..\..\Src\Controllers'));
+        $files = scandir(__DIR__ . '/../../Src/Controllers');
         foreach ($files as $file) {
             $pi = pathinfo($file);
             if ($pi['extension'] != 'php') continue;
