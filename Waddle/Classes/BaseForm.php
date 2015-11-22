@@ -8,8 +8,6 @@
 
 namespace Waddle\Classes;
 
-// TODO: BaseForm features: validating, rendering, populating with data.
-
 /**
  * Class BaseForm
  * @package Waddle\Classes
@@ -46,8 +44,6 @@ class BaseForm implements FormInterface {
      * @return bool
      */
     public function handleRequest($requestData) {
-        // TODO: Implement handleGetRequest() method. Errors are saved as a field.
-        // TODO: And then are being used in getView method
         foreach($requestData as $name => $value) {
             if (!isset($this->_fields[$name])) continue;
             $this->_fields[$name]->set($value);

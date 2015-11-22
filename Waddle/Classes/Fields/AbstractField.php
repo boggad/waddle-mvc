@@ -1,6 +1,7 @@
 <?php
 
 namespace Waddle\Classes\Fields;
+use Classes\Exceptions\ValidationError;
 
 /**
  * Class DecimalField
@@ -36,7 +37,9 @@ abstract class AbstractField implements FieldInterface {
         if ($this->validate()) {
             $this->data = $data;
         } else {
-            // TODO throw new ValidationError()
+            throw new ValidationError('Validation Failed in class "' .
+                get_class($this) . '" on data: "' . $data . '"');
+            // TODO: Add tests on throwing the exception
         }
     }
 
