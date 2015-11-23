@@ -4,6 +4,7 @@ namespace Waddle\classes;
 
 
 interface DbConnection {
+    // TODO: Needs to add lazy init for DdProvider!
     function __construct($host, $user, $password, $name = false);
     function __destruct();
 
