@@ -14,6 +14,7 @@ spl_autoload_register(function ($class) {
 
     $file = $base_dir . str_replace('\\', DIRECTORY_SEPARATOR, $relative_class) . '.php';
     if (file_exists($file)) {
+        /** @noinspection PhpIncludeInspection */
         require_once $file;
     }
 });
@@ -24,3 +25,5 @@ spl_autoload_register(function($class) {
     if (file_exists($path))
         require_once $path;
 });
+
+require_once 'vendor/autoload.php';

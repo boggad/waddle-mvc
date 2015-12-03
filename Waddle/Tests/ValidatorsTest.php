@@ -29,6 +29,9 @@ class ValidatorsTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider requiredDataProvider
+     * @param $data
+     * @param $message
+     * @param $expected
      */
     public function testRequiredValidator($data, $message, $expected) {
         $validator = new Required('The field is required!');
